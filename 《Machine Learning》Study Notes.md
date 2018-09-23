@@ -1,5 +1,7 @@
+- [Lecture 1 Introduction](#lecture-1-introduction)
+  - [2. Cost function optimization for regularization](#2-cost-function-optimization-for-regularization)
 
-[TOC]
+---------------------
 
 # Lecture 1 Introduction
 ## 1. What is Machine Learning
