@@ -1,0 +1,3 @@
+LastName HourlyWage HoursWorked
+Jane 100 40
+Bob 100 60
