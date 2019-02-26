@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title></title>
+    <dateModified></dateModified>
+    <ownerName></ownerName>
+  </head>
+  <body>
+<outline text="Lecture 1 Introduction">
+  <outline text="1. What is Machine Learning">
+    <outline text="1.1 Definition" _note="Tom Michel (1999) &quot;A computer program is said to learn from experience E&#10;with respect to some class of tasks T and performance measure P, if its&#10;performance at tasks in T, as measured by P, improves with experience&#10;E.&quot;">
+    </outline>
+    <outline text="1.2 Types of learning algorithms" _note="1.  **Supervised learning**: each the computer how to do something, then&#10;    let it use it;s new found knowledge to do it&#10;&#10;2.  **Unsupervised learning**: Let the computer learn how to do&#10;    something, and use this to determine structure and patterns in data&#10;&#10;3.  **Reinforcement learning**&#10;&#10;4.  **Recommender systems**">
+    </outline>
+  </outline>
+  <outline text="2. Supervised learning - introduction">
+    <outline text="2.1 Regression Problem" _note="-   Predict continuous valued output (price)&#10;&#10;-   No real discrete delineation ex. predict housing prices&#10;&#10;We gave the algorithm a data set where a &quot;right answer&quot; was provided.&#10;The idea is we can learn what makes the price a certain value from the&#10;training data.">
+    </outline>
+    <outline text="2.2 Classification problem" _note="ex. Classify data into one of two discrete classes - no in between,&#10;either malignant or not based on age and size">
+    </outline>
+  </outline>
+  <outline text="3. Unsupervised learning">
+    <outline text="3.1 clustering algorithm" _note="we get unlabeled data and cluster data into to groups">
+    </outline>
+    <outline text="3.2 Cocktail party algorithm">
+    </outline>
+  </outline>
+</outline>
+<outline text="Lecture 2 Linear Regression with One Variable">
+  <outline text="1. Model Representation" _note="A hypothesis takes in some variable Uses parameters determined by a&#10;learning system Outputs a prediction based on that input&#10;&#10;-   Algorithm outputs a function (denoted h ) (h = hypothesis)&#10;&#10;-   m = number of training examples&#10;&#10;-   θ are parameters">
+  </outline>
+  <outline text="2. Cost Function" _note="A cost function lets us figure out how to fit the best straight line to&#10;our data, choosing values for θi (parameters)&#10;&#10;picture 2.2 1&#10;&#10;This cost function is also called the **squared error cost function**&#10;&#10;1/2m the 2 makes the math a bit easier&#10;&#10;picture 2.2 2&#10;&#10;The optimization objective for the learning algorithm is find the value&#10;of θ1 which minimizes J(θ1). So, here θ1 = 1 is the best value for θ1&#10;&#10;Generates a 3D surface plot where axis are X = θ1 Z = θ0 Y = J(θ0,θ1)\\&#10;We can see that the height (y) indicates the value of the cost function,&#10;so find where y is at a minimum\\ Doing this by eye/hand is a pain in&#10;the ass. What we really want is an efficient algorithm fro finding the&#10;minimum for θ0 and θ1&#10;&#10;picture 2.2 3">
+  </outline>
+  <outline text="3. Gradient Descent" _note="Problem&#10;&#10;-   We have J(θ0, θ1)&#10;&#10;-   We want to get min J(θ0, θ1)">
+    <outline text="3.1 How does it work?" _note="-   Each time you change the parameters, you select the gradient which&#10;    reduces J(θ0,θ1) the most possible&#10;&#10;-   Has an interesting property--**Local Minimum**. Where you start can&#10;    determine which minimum you end up&#10;&#10;picture">
+    </outline>
+    <outline text="3.2 Formal definition" _note="picture&#10;&#10;Update θj by setting it to (θj - α) times the partial derivative of the&#10;cost function with respect to θj&#10;&#10;**α (alpha)** Is a number called the **learning rate**&#10;&#10;For j = 0 and j = 1 means we simultaneously update both. we need a temp&#10;value. Then, update θ0 and θ1 at the same time.&#10;&#10;**Derivative**\\ Lets take the tangent at the point and look at the&#10;slope of the line So moving towards the mimum (down) will greate a&#10;negative derivative, alpha is always positive, so will update j(θ1) to a&#10;smaller value&#10;&#10;**Alpha term (α)**&#10;&#10;-   Too small\\ Takes too long&#10;&#10;-   Too large\\ Can overshoot the minimum and fail to converge&#10;&#10;When you get to a local minimum\\ Gradient of tangent/derivative is 0.&#10;So derivative term = 0 alpha \* 0 = 0 So θ1 = θ1- 0 So θ1 remains the&#10;same">
+    </outline>
+  </outline>
+  <outline text="4. Linear regression with gradient descent" _note="picture&#10;&#10;picture&#10;&#10;The linear regression cost function is always a **convex function** -&#10;always has a single minimum---one global optima&#10;&#10;This is actually **Batch Gradient Descent**\\ Refers to the fact that&#10;over each step you look at all the training data&#10;&#10;There exists a numerical solution for finding a solution for a minimum&#10;function---**Normal equations method**解方程">
+  </outline>
+</outline>
+<outline text="Lecture 4 Linear Regression with Multiple Variables">
+  <outline text="1. Multiple features">
+    <outline text="1.1 Notations" _note="In original version we had&#10;&#10;-   X = house size, use this to predict&#10;&#10;-   y = house price&#10;&#10;If in a new scheme we have more variables (such as number of bedrooms,&#10;number floors, age of the home)\\ x1, x2, x3, x4 are the four features&#10;&#10;-   x1 - size (feet squared)&#10;&#10;-   x2 - Number of bedrooms&#10;&#10;-   x3 - Number of floors&#10;&#10;-   x4 - Age of home (years)&#10;&#10;y is the output variable (price)&#10;&#10;-   n: number of features (n = 4)&#10;&#10;-   m: number of examples (i.e. number of rows in a table)&#10;&#10;-   : The value of feature j in the ith training example">
+    </outline>
+    <outline text="1.2 Formula" _note="**hθ(x) = θ0 + θ1x1 + θ2x2 + θ3x3 + θ4x4**\\ X0=1. So now your **feature&#10;vector X** is n + 1 dimensional feature vector indexed from 0\\&#10;**Parameters theta** are also in a 0 indexed n+1 dimensional vector&#10;&#10;In matrix, \\ \[1 x (n+1)\] \* \[(n+1) x 1\]&#10;先不管这个的行列安排，feature vector和parameter vector都是竖着的vector">
+    </outline>
+  </outline>
+  <outline text="2. Gradient descent for multiple variables">
+    <outline text="2.1 cost function and gradient descent" _note="Our cost function is picture L4 2 1&#10;&#10;Gradient Descent picture L4 2 2">
+    </outline>
+    <outline text="2.2 Gradient Decent in practice: 1 Feature Scaling" _note="If you have a problem with multiple features. You should make sure those&#10;features have a similar scale . Means gradient descent will converge&#10;more quickly&#10;&#10;May want to get everything into -1 to +1 range (approximately)&#10;&#10;picture L4 2.2 1">
+    </outline>
+    <outline text="2.3 Gradient Decent in practice: 2 Learning Rate">
+      <outline text="2.3.1 Iteration" _note="Plot min J(θ) vs. no of iterations&#10;&#10;picture&#10;&#10;Very hard to tel in advance how many iterations will be needed Can often&#10;make a guess based a plot like this after the first 100 or so&#10;iterations\\ If, for example, after 1000 iterations you reduce the&#10;parameters by nearly nothing you could chose to only run 1000 iterations&#10;in the future&#10;&#10;Another problem: too big">
+      </outline>
+      <outline text="2.3.2 J is increasing" _note="If you plot J(θ) vs iterations and see the value is increasing - means&#10;you probably need a smaller α">
+      </outline>
+      <outline text="2.3.3 J looks like waves" _note="Here again, you need a smaller α&#10;&#10;if α is too small then rate is too slow&#10;&#10;**Typically**\\ Try a range of alpha values\\ Plot J(θ) vs number of&#10;iterations for each version of alpha\\ Go for roughly threefold&#10;increases\\ 0.001, 0.003, 0.01, 0.03. 0.1, 0.3">
+      </outline>
+    </outline>
+  </outline>
+  <outline text="3. Features and polynomial regression">
+    <outline text="3.1 New features" _note="Choice of features and how you can get different learning algorithms by&#10;choosing appropriate features&#10;&#10;You don't have to use just two features Can create new features Might&#10;decide that an important feature is the land area So, create a new&#10;feature = frontage&#10;&#10;Often, by defining new features you may get a better model">
+    </outline>
+    <outline text="3.2 Polynomial regression" _note="May fit the data better&#10;&#10;θ0 + θ1x + θ2x^2 e.g. here we have a quadratic function&#10;&#10;x1 = x\\ x2 = x^2\\ x3 = x^3\\ By selecting the features like this and&#10;applying the linear regression algorithms you can do polynomial linear&#10;regression">
+    </outline>
+  </outline>
+  <outline text="4. Normal Equation" _note="Normal equation solves θ analytically\\ Solve for the optimum value of&#10;theta">
+    <outline text="4.1 How does it work" _note="1.  Take derivative of J(θ) with respect to θ&#10;&#10;2.  Set that derivative equal to 0&#10;&#10;3.  Allows you to solve for the value of θ which minimizes J(θ)\\ Take&#10;    the partial derivative of J(θ) with respect θj and set to 0 for&#10;    every j\\ Do that and solve for θ0 to θn\\ This would give the&#10;    values of θ which minimize J(θ)">
+    </outline>
+    <outline text="4.2 Example" _note="1.  Construct a matrix (X - the design matrix) which contains all the&#10;    training data features in an \[m x n+1\] matrix&#10;&#10;2.  Construct a column vector y vector \[m x 1\] matrix&#10;&#10;3.  Using the following equation (X transpose \* X) inverse times X&#10;    transpose y&#10;&#10;picture\\ picture&#10;&#10;If you're using the normal equation then no need for feature scaling">
+    </outline>
+    <outline text="4.3 Gradient descent VS Normal Equation">
+      <outline text="4.3.1 Gradient descent" _note="-   Need to chose learning rate&#10;&#10;-   Needs many iterations - could make it slower&#10;&#10;-   Works well even when n is massive (millions)&#10;&#10;-   Better suited to big data\\ 100 or even a 1000 is still (relativity)&#10;    small\\ If n is 10 000 then look at using gradient descent">
+      </outline>
+      <outline text="4.3.2 Normal Equation" _note="-   Normal equation needs to compute (X^T X)^(-1) With most&#10;    implementations computing a matrix inverse grows by O(n3 ) So not&#10;    great&#10;&#10;-   Slow of n is large\\ Can be much slower">
+      </outline>
+    </outline>
+    <outline text="4.4 What if (X^T X) is non-invertible" _note="Normally two common causes&#10;&#10;1.  Redundant features in learning mode\\ e.g. x1 = size in feet x2 =&#10;    size in meters squared\\ Look at features --&amp;gt; are features&#10;    linearly dependent?&#10;&#10;2.  Too many features\\ Trying to fit 101 parameters from 10 training&#10;    examples\\ To solve this we\\ a. Delete features\\ b. Use&#10;    **regularization** (let's you use lots of features for a small&#10;    training set)">
+    </outline>
+  </outline>
+</outline>
+<outline text="Lecture 6 Logistic Regression">
+  <outline text="1. what is Logistic Regression" _note="Classification problems:&#10;&#10;-   Email -&amp;gt; spam/not spam?&#10;&#10;-   Online transactions -&amp;gt; fraudulent?&#10;&#10;-   Tumor -&amp;gt; Malignant/benign&#10;&#10;Variable in these problems is Y. Y is either 0 or 1&#10;&#10;**Logistic regression generates a value where is always either 0 or 1.&#10;Logistic regression is a classification algorithm**">
+  </outline>
+  <outline text="2. Hypothesis representation" _note="We want our classifier to output values between 0 and 1&#10;&#10;picture&#10;&#10;g(z) = 1/(1 + e^-z) This is the sigmoid function, or the logistic&#10;function&#10;&#10;When our hypothesis (hθ(x)) outputs a number, we treat that value as the&#10;estimated probability that y=1 on input x&#10;&#10;hθ(x) = P(y=1|x ; θ) Probability that y=1, given x, parameterized by θ&#10;&#10;P(y=1|x ; θ) + P(y=0|x ; θ) = 1">
+  </outline>
+  <outline text="3. Decision boundary">
+    <outline text="3.1 linear decision boundaries" _note="z = θ0 + θ1x1 + θ2x2 = 0 we graphically plot our decision boundary&#10;(Concretely, the straight line is the set of points where hθ(x) = 0.5)&#10;&#10;-3x0 + 1x1 + 1x2 &amp;gt;= 0 then we predict y = 1&#10;&#10;picture">
+    </outline>
+    <outline text="3.2 Non-linear decision boundaries" _note="Predict that &quot;y = 1&quot; if -1 + x12 + x22 &amp;gt;= 0&#10;&#10;picture&#10;&#10;By using higher order polynomial terms, we can get even more complex&#10;decision boundaries">
+    </outline>
+  </outline>
+  <outline text="4. Cost Function">
+    <outline text="4.1 why not cost function in linear regression" _note="if we use the cost function in Linear regression, this is a non-convex&#10;function for parameter optimization&#10;&#10;picture&#10;&#10;Our hypothesis function has a non-linearity (sigmoid function of hθ(x) )&#10;This is a complicated non-linear function\\ If you take hθ(x) and plug&#10;it into the Cost() function, and them plug the Cost() function into J(θ)&#10;and plot J(θ) we find many local optimum -&amp;gt; **non-convex function**&#10;&#10;what should we do?\\ To get around this we need a different, convex&#10;Cost() function which means we can apply gradient descent">
+    </outline>
+    <outline text="4.2 A convex logistic regression cost function" _note="picture&#10;&#10;picture&#10;&#10;picture">
+    </outline>
+  </outline>
+  <outline text="5. Simplified cost function and gradient descent" _note="picture&#10;&#10;in summary, our cost function for the θ parameters can be defined as&#10;&#10;picture&#10;&#10;Why do we chose this function when other cost functions exist?&#10;&#10;-   This cost function can be derived from statistics using the&#10;    principle of maximum likelihood estimation. Note this does mean&#10;    there's an underlying Gaussian assumption relating to the&#10;    distribution of features&#10;&#10;-   Also has the nice property that it's convex&#10;&#10;流程：&#10;&#10;1.  To fit parameters θ: Find parameters θ which minimize J(θ) This&#10;    means we have a set of parameters to use in our model for future&#10;    predictions&#10;&#10;2.  Then, if we're given some new example with set of features x, we can&#10;    take the θ which we generated, and output our prediction using\\&#10;    picture&#10;&#10;3.  This result is p(y=1 | x ; θ)">
+    <outline text="5.1 How to minimize the logistic regression cost function" _note="Now we need to figure out how to minimize J(θ). Use gradient descent as&#10;before. Repeatedly update each parameter using a learning R&#10;&#10;picture&#10;&#10;Can do the same thing here for logistic regression.&#10;&#10;Feature scaling for gradient descent for logistic regression also&#10;applies here.">
+    </outline>
+  </outline>
+  <outline text="6. Advanced Optimization" _note="Alternatively, instead of gradient descent to minimize the cost function&#10;we could use&#10;&#10;-   Conjugate gradient&#10;&#10;-   BFGS (Broyden-Fletcher-Goldfarb-Shanno)&#10;&#10;-   L-BFGS (Limited memory - BFGS)&#10;&#10;advantages:&#10;&#10;-   No need to manually pick alpha (learning rate)&#10;&#10;-   Have a clever inner loop (line search algorithm) which tries a bunch&#10;    of alpha values and picks a good one&#10;&#10;-   Often faster than gradient descent&#10;&#10;-   Can be used successfully without understanding their complexity&#10;&#10;Disadvantages&#10;&#10;-   Could make debugging more difficult&#10;&#10;-   Should not be implemented themselves">
+  </outline>
+  <outline text="7. Multiclass classification problems" _note="**One vs. all classification** Split the training set into three&#10;separate binary classification problems i.e. create a new fake training&#10;set&#10;&#10;-   Triangle (1) vs crosses and squares (0) hθ1(x)&#10;    C与S视为一类，再与T分类\\ P(y=1 | x1; θ)&#10;&#10;-   Crosses (1) vs triangle and square (0) hθ2(x)\\ P(y=1 | x2; θ)&#10;&#10;-   Square (1) vs crosses and square (0) hθ3(x)\\ P(y=1 | x3; θ)&#10;&#10;picture&#10;&#10;Overall&#10;&#10;1.  Train a logistic regression classifier hθ(i)(x) for each class i to&#10;    predict the probability that y = i 训练三个0即三个分类器&#10;&#10;2.  On a new input, x to make a prediction, pick the class i that&#10;    maximizes the probability that hθ(i)(x) = 1 对新的数据判断哪个h最大">
+  </outline>
+</outline>
+<outline text="Lecture 7 Regularization">
+  <outline text="1. The problem of overfitting">
+    <outline text="1.1 Underfitting (high bias)" _note="ex. Fit a linear function to the data - not a great model\\ Bias is a&#10;historic/technical one - if we're fitting a straight line to the data we&#10;have a strong preconception that there should be a linear fit">
+    </outline>
+    <outline text="1.2 Overfitting (high variance)" _note="ex. a high order polynomial gives and overfitting (high variance&#10;hypothesis)">
+      <outline text="1.2.1 Addressing overfitting" _note="1.  **Reduce number of features**&#10;&#10;    -   If you have lots of features and little data - overfitting can&#10;        be a problem. Manually select which features to keep&#10;&#10;    -   Model selection algorithms are discussed later (good for&#10;        reducing number of features)&#10;&#10;    -   But, in reducing the number of features we lose some information&#10;&#10;2.  **Regularization**&#10;&#10;    -   Keep all features, but reduce magnitude of parameters θ&#10;&#10;    -   Works well when we have a lot of features, each of which&#10;        contributes a bit to predicting y">
+      </outline>
+    </outline>
+  </outline>
+  <outline text="2. Cost function optimization for regularization" _note="picture&#10;&#10;picture&#10;&#10;The addition in blue is a modification of our cost function to help&#10;penalize θ3 and θ4. So here we end up with θ3 and θ4 being close to zero&#10;(because the constants are massive). \\ So we're basically left with a&#10;quadratic function&#10;&#10;Small values for parameters corresponds to a simpler hypothesis (you&#10;effectively get rid of some of the terms)&#10;&#10;With regularization, take cost function and modify it to shrink all the&#10;parameters&#10;&#10;picture&#10;&#10;**λ is the regularization parameter** Controls a trade off between our&#10;two goals&#10;&#10;1.  Want to fit the training set well.&#10;&#10;2.  Want to keep parameters small&#10;&#10;**If λ is very large** we end up penalizing ALL the parameters (θ1, θ2&#10;etc.) so all the parameters end up being close to zero. it's like we got&#10;rid of all the terms in the hypothesis This results here is then&#10;**underfitting**">
+  </outline>
+  <outline text="3. Regularized linear regression and logistic regression" _note="picture&#10;&#10;picture&#10;&#10;\\ Is going to be a number less than 1 usually. This in effect means θj&#10;gets multiplied by 0.99. Means the squared norm of θj a little smaller&#10;&#10;**It is the same for logistic regression,** except obviously the&#10;hypothesis is very different">
+  </outline>
+</outline>
+<outline text="Lecture 8 Neural Networks - Representation">
+  <outline text="1. Why do we need neural networks?" _note="ex. If 100 x 100 RB then --&amp;gt; 50 000 000 features. simple logistic&#10;regression here is not appropriate for large complex systems Neural&#10;networks are much better for a complex nonlinear hypothesis even when&#10;feature space is huge">
+  </outline>
+  <outline text="2. Model representation" _note="picture&#10;&#10;First layer is the input layer\\ Final layer is the output layer -&#10;produces value computed by a hypothesis\\ Middle layer(s) are called the&#10;hidden layers&#10;&#10;picture&#10;&#10;To take care of the extra bias unit add a02 = 1 So add a02 to a2 making&#10;it a 4x1 vector&#10;&#10;-   j (first of two subscript numbers)= ranges from 1 to the number of&#10;    units in layer l+1&#10;&#10;-   i (second of two subscript numbers) = ranges from 0 to the number of&#10;    units in layer l&#10;&#10;-   l is the layer you're moving FROM&#10;&#10;This process is also called **forward propagation**&#10;&#10;1.  Start off with activations of input unit i.e. the x vector as input&#10;&#10;2.  Forward propagate and calculate the activation of each layer&#10;    sequentially&#10;&#10;-   logistic regression: you would have to calculate your own exciting&#10;    features to define the best way to classify or describe something&#10;&#10;-   NN: the mapping from layer 1 to layer 2 (i.e. the calculations which&#10;    generate the **a2** features) is determined by another set of&#10;    parameters - Ɵ1. instead of being constrained by the original input&#10;    features, a neural network can **learn its own features** to feed&#10;    into logistic regression">
+  </outline>
+  <outline text="3. Neural network example" _note="一个简单的例子展示NN的内在过程如何计算AND picture&#10;&#10;picture">
+  </outline>
+  <outline text="4. Multiclass classification" _note="Recognizing pedestrian, car, motorbike or truck\\ Build a neural network&#10;with four output units.&#10;&#10;picture&#10;&#10;Just like one vs. all described earlier. Here we have four logistic&#10;regression classifiers in the final layer">
+  </outline>
+</outline>
+<outline text="Lecture 9 Neural Network: Learning">
+  <outline text="1. Cost Function" _note="notation:&#10;&#10;-   Training set is {(x1, y1), (x2, y2), (x3, y3) ... (xn, ym)&#10;&#10;-   L = number of layers in the network&#10;&#10;-   sl = number of units (not counting bias unit) in layer l&#10;&#10;-   k distinct classifications. So y is a k-dimensional vector of real&#10;    numbers.&#10;&#10;picture&#10;&#10;the first half:\\ For each training data example (i.e. 1 to m - the&#10;first summation) Sum for each position in the output vector\\ the second&#10;half:\\ also called a weight decay term">
+  </outline>
+  <outline text="2. Back propagation algorithm" _note="To minimize a cost function we just write code which computes the&#10;following&#10;&#10;-   J(Ɵ)&#10;&#10;-   Partial derivative terms PICTURE&#10;&#10;forward propagation PICTURE&#10;&#10;Before we dive into the mechanics, let's get an idea regarding the&#10;intuition of the algorithm\\ For each node we can calculate **(δjl) -&#10;this is the error of node j in layer l**\\ EX.&#10;&#10;PICTURE&#10;&#10;进一步推导，&#10;&#10;\\ . \* is the element wise multiplication between the two vectors&#10;&#10;**Why do we do calculate the error term?**&#10;&#10;we want the δ terms because through a very complicated derivation you&#10;can use δ **to get the partial derivative of Ɵ with respect to&#10;individual parameters** (if you ignore regularization, or regularization&#10;is 0, which we deal with later)&#10;&#10;then, sum it all together to get the partial derivatives!&#10;&#10;use Δ to accumulate the partial derivative terms&#10;&#10;picture&#10;&#10;After executing the body of the loop, exit the for loop and compute&#10;&#10;picture&#10;&#10;We have calculated the partial derivative for each parameter\\ We can&#10;then use these in gradient descent or one of the advanced optimization&#10;algorithms">
+  </outline>
+  <outline text="3. Back propagation intuition" _note="forward propagation picture&#10;&#10;Back propagation picture&#10;&#10;this is a part of J&#10;&#10;δ is picture&#10;&#10;picture">
+  </outline>
+  <outline text="4. Gradient Checking" _note="picture&#10;&#10;picture&#10;&#10;1.  Create a vector of partial derivative approximations&#10;&#10;2.  Using the vector of gradients from backprop (DVec)&#10;&#10;3.  **Check that gradApprox is basically equal to DVec**. Gives&#10;    confidence that the Backproc implementation is correc&#10;&#10;GradAprox stuff is very computationally expensive\\ In contrast backprop&#10;is much more efficient (just more fiddly)\\ 所以不用这种办法来计算梯度">
+  </outline>
+  <outline text="5. Random initialization" _note="Pick random small initial values for all the theta values. **Between 0&#10;and 1, then scale by epsilon (where epsilon is a constant)**&#10;&#10;If you start them on zero (which does work for linear regression) then&#10;the algorithm fails - all activation values for each layer are the same.&#10;theta不能都一样">
+  </outline>
+  <outline text="6. Summary" _note="1.  pick a network architecture&#10;&#10;    -   Input units - number of dimensions x (dimensions of feature&#10;        vector)&#10;&#10;    -   Output units - number of classes in classification problem&#10;&#10;    -   Hidden units&#10;&#10;2.  Training a neural network&#10;&#10;    1.  Randomly initialize the weights&#10;&#10;    2.  Implement forward propagation to get hƟ(x)i for any xi&#10;&#10;    3.  Implement code to compute the cost function J(Ɵ)&#10;&#10;    4.  **Implement back propagation to compute the partial&#10;        derivatives**&#10;&#10;3.  Use gradient checking. Disable the gradient checking code for when&#10;    you actually run it, because it is very slow&#10;&#10;4.  Use **gradient descent**or an advanced optimization method with back&#10;    propagation to try to minimize J(Ɵ) as a function of parameters Ɵ\\&#10;    start from some random point and move downhill, avoiding local&#10;    minimum">
+  </outline>
+</outline>
+<outline text="Lecture 10 Advice for applying Machine Learning">
+  <outline text="1. Deciding what to try next" _note="when you test on new data you find it makes unacceptably large errors in&#10;its predictions. What should you try next?&#10;&#10;There are many things you can do:&#10;&#10;-   Get more training data&#10;&#10;-   Try a smaller set a features&#10;&#10;-   Try getting additional features&#10;&#10;-   Adding polynomial features&#10;&#10;-   Building your own, new, better features&#10;&#10;-   Try decreasing or increasing λ&#10;&#10;Machine learning diagnostics: Tests you can run to see what is/what&#10;isn't working for an algorithm. 找到真正的问题所在">
+  </outline>
+  <outline text="2. Evaluating a hypothesis" _note="Split data into two portions&#10;&#10;-   1st portion is training set&#10;&#10;-   2nd portion is test set&#10;&#10;Compute the **test error**\\ Jtest(θ) = average square error as measured&#10;on the test set&#10;&#10;picture&#10;&#10;或者直接简单计算错误率">
+  </outline>
+  <outline text="3. Model selection and training validation test sets" _note="How to chose regularization parameter or degree of polynomial (model&#10;selection problems)&#10;&#10;Take these parameters and look at the test set error for each using the&#10;previous formula. **See which model has the lowest test set error**\\&#10;Jtest(θ1)\\ Jtest(θ2)\\ ...\\ Jtest(θ10)\\ BUT, this is going to be an&#10;optimistic estimate of generalization error, **because our parameter is&#10;fit to that test set**&#10;&#10;Improved model selection Given a training set instead split into three&#10;pieces&#10;&#10;1.  Training set (60%) - m values&#10;&#10;2.  **Cross validation (CV) set (20%)mcv**&#10;&#10;3.  Test set (20%) mtest&#10;&#10;So&#10;&#10;1.  Minimize cost function for each of the models as before&#10;&#10;2.  Test these hypothesis on the cross validation set to generate the&#10;    cross validation error&#10;&#10;3.  **Pick the hypothesis with the lowest cross validation error** e.g.&#10;    pick θ5&#10;&#10;4.  Finally Estimate **generalization error of model using the test&#10;    set**">
+  </outline>
+  <outline text="4. Diagnosis - bias vs. variance" _note="If you get bad results usually because of one of&#10;&#10;-   **High bias** - **under-fitting problem**&#10;&#10;-   **High variance** - **over-fitting problem**&#10;&#10;We want to minimize both errors. CV(Cross validation) error and test set&#10;error&#10;&#10;picture&#10;&#10;we can find that:&#10;&#10;-   if d is too small --&amp;gt; this probably corresponds to a **high bias&#10;    problem. both cross validation and training error are high**&#10;&#10;-   if d is too large --&amp;gt; this probably corresponds to a **high&#10;    variance problem. cross validation error is high but training error&#10;    is low**">
+  </outline>
+  <outline text="5. Regularization and bias/variance" _note="-   λ = large. So high bias -&amp;gt; under fitting data&#10;&#10;-   λ = small. So high variance -&amp;gt; Get overfitting&#10;&#10;Often increment by factors of 2 so\\ model(1)= λ = 0\\ model(2)= λ =&#10;0.01\\ model(3)= λ = 0.02\\ model(4) = λ = 0.04\\ model(5) = λ = 0.08\\&#10;.\\ .\\ .\\ model(p) = λ = 10\\ This gives a number of models which have&#10;different λ\\ now we have a set of parameter vectors corresponding to&#10;models with different λ values\\ Measure average squared error on cross&#10;validation set. **Pick the model which gives the lowest error**">
+  </outline>
+  <outline text="5. learning curve" _note="Jtrain (average squared error on training set) or Jcv (average squared&#10;error on cross validation set)&#10;&#10;What do these curves look like if you have&#10;&#10;1.  **High bias**&#10;&#10;    -   The problem with high bias is because cross validation and&#10;        training error are both high&#10;&#10;    -   picture&#10;&#10;    -   the function just doesn't fit the data. increase in data will&#10;        not help it fit&#10;&#10;    -   It's too simplistic&#10;&#10;2.  **High variance**&#10;&#10;    -   there's a big gap between training error and cross validation&#10;        error&#10;&#10;    -   picture&#10;&#10;    -   more data is probably going to help. Jtrain slowly increases">
+  </outline>
+  <outline text="6. What to do next (revisited)" _note="How do these ideas help us chose how we approach a&#10;problem?发现问题是overfitting还是high bias之后开始解决问题&#10;&#10;-   Get more examples --&amp;gt; helps to fix high variance Not good if you&#10;    have high bias&#10;&#10;-   Smaller set of features --&amp;gt; fixes high variance (overfitting) Not&#10;    good if you have high bias&#10;&#10;-   Try adding additional features --&amp;gt; fixes high bias (because&#10;    hypothesis is too simple, make hypothesis more specific)&#10;&#10;-   Add polynomial terms --&amp;gt; fixes high bias problem&#10;&#10;-   Decreasing λ --&amp;gt; fixes high bias&#10;&#10;-   Increases λ --&amp;gt; fixes high variance">
+    <outline text="6.2 network architecture" _note="-   small neural network: computationally cheaper; prone to under&#10;    fitting&#10;&#10;-   Larger network: computational expensive Prone to over-fitting (Use&#10;    regularization)">
+    </outline>
+  </outline>
+</outline>
+<outline text="Lecture 11 Machine Learning System Design">
+  <outline text="1. Prioritizing what to work on--represent features" _note="How do represent x (features of the email&#10;&#10;picture&#10;&#10;Encode this into a reference vector. In practice its more common to have&#10;a training set and pick the most frequently n words, where n is 10 000&#10;to 50 000">
+  </outline>
+  <outline text="2. Error analysis" _note="Recommended Approach:&#10;&#10;1.  Spend at most 24 hours developing an **initially bootstrapped&#10;    algorithm**\\ Implement and test on cross validation data&#10;&#10;2.  **Plot learning curves** to decide if more data, features etc will&#10;    help algorithmic optimization\\ Hard to tell in advance what is&#10;    important\\ Learning curves really help with this\\ Way of avoiding&#10;    premature optimization 要根据事实来判断，而不能靠感觉来优化&#10;&#10;3.  Manually examine the samples (in cross validation set) that your&#10;    algorithm made errors on.\\ See if you can work out why Systematic&#10;    patterns发现有没有系统性错误\\&#10;&#10;Importance of numerical evaluation. See if a change improves an&#10;algorithm or not当然有一个数值方法也很重要">
+  </outline>
+  <outline text="3. Error metrics for skewed analysis">
+    <outline text="3.1 Precision and recall" _note="picture&#10;&#10;-   precsion: 预测得正确\\ Of all patients we predicted have cancer,&#10;    what fraction of them actually have cancer&#10;&#10;-   recall: 与漏判率成反比。RECALL越高，漏盘越低\\ Of all patients in&#10;    set that actually have cancer, what fraction did we correctly detect">
+    </outline>
+    <outline text="3.2 Trading off precision and recall" _note="Trained a logistic regression classifier :\\ Predict 1 if hθ(x) &amp;gt;=&#10;0.3\\ Predict 0 if hθ(x) &amp;lt; 0.3\\ i.e. 30% chance they have cancer. So&#10;now we have have a **higher recall**, but lower precision&#10;&#10;picture&#10;&#10;This curve can take many different shapes depending on classifier&#10;details. Is there a way to automatically chose the threshold? can we&#10;convert P &amp; R into one number?&#10;&#10;**F1 Score (fscore)** = 2 \* (PR/ \[P + R\])&#10;&#10;-   If P = 0 or R = 0 the Fscore = 0&#10;&#10;-   If P = 1 and R = 1 then Fscore = 1&#10;&#10;-   The remaining values lie between 0 and 1&#10;&#10;If you're trying to automatically set the threshold, one way is to try a&#10;range of threshold values and evaluate them on your cross validation set&#10;&#10;Then pick the threshold which gives the best fscore.">
+    </outline>
+  </outline>
+  <outline text="4. Large data rational" _note="**With supervised learning algorithms - performance is pretty similar**&#10;&#10;**What matters more often** is: The amount of training data and Skill of&#10;applying algorithms&#10;&#10;-   Low bias &amp;lt;-- use complex algorithm&#10;&#10;-   Low variance &amp;lt;-- use large training set&#10;&#10;使用复杂的模型和大量的数据，training error和CV error都很低的情况下，test&#10;error应该也很低&#10;&#10;如果数据量小的话，Training error should be small">
+  </outline>
+</outline>
+<outline text="Lecture 12 Support vector machine" _note="a cleaner way of learning non-linear functions">
+  <outline text="1. Optimizaiton Object" _note="As for logistic regression, the cost function is&#10;&#10;picture&#10;&#10;If y = 1 then only the first term in the objective matters picture&#10;&#10;If y = 0 then only the second term matters picture&#10;&#10;To build a SVM we must redefine our **cost functions** picture&#10;&#10;For the SVM we take our two logistic regression y=1 and y=0 terms&#10;described previously and replace with\\ cost1(θT x) cost0(θT x)\\ so we&#10;get&#10;&#10;picture&#10;&#10;**SVM notation is slightly different:**&#10;&#10;1.  Get rid of the 1/m terms&#10;&#10;2.  For logistic regression we had two terms, So we could describe it as&#10;    A + λB.\\ For SVMs the convention is to use a different parameter&#10;    called C So do **CA + B**&#10;&#10;If C were equal to 1/λ then the two functions (CA + B and A + λB) would&#10;give the same value">
+  </outline>
+  <outline text="2. Large margin intuition" _note="Unlike logistic, hθ(x) doesn't give us a probability, but instead we get&#10;a **direct prediction of 1 or 0**&#10;&#10;SVM wants a bit more than that - doesn't want to *just* get it right,&#10;but have the value be quite a bit bigger than zero (as the formula shown&#10;above)&#10;&#10;**what are the consequences of these a little big value?**\\ Consider a&#10;case where we set C to be huge, C = 10000. If C is huge we're going to&#10;pick an A value so that A is equal to zero in order to minimize the cost&#10;function.&#10;&#10;更进一步 if we think of our optimization problem a way to ensure that&#10;this first &quot;A&quot; term is equal to 0, we re-factor our optimization problem&#10;into just minimizing the &quot;B&quot; (regularization)&#10;term可以只剩B，把A列为subject条件&#10;&#10;picture&#10;&#10;picture&#10;&#10;as you can see, green and magenta lines are functional decision&#10;boundaries which could be chosen by logistic regression. That black line&#10;has a larger minimum distance (margin) from any of the training examples&#10;C大相当于λ小，拟合程度高，对异常值更敏感&#10;&#10;picture&#10;&#10;If you were just using large margin then SVM would be very **sensitive&#10;to outliers**. So the idea of SVM being a large margin classifier is&#10;only really relevant when you have no outliers.\\&#10;C值很大的时候，并且在没有异常值的时候，才能作为Large margin classifier">
+  </outline>
+  <outline text="3. Large margin classification mathematics">
+    <outline text="3.1 Inner product" _note="||u|| = SQRT(u12 + u22)&#10;&#10;picture">
+    </outline>
+    <outline text="3.2 SVM decision boundary" _note="picture&#10;&#10;our optimization function can be redefined as&#10;&#10;can be replaced as&#10;&#10;The constraints we defined earlier \\ (θT x) &amp;gt;= 1 if y = 1\\ (θT x)&#10;&amp;lt;= -1 if y = 0\\ Can be replaced/substituted with the constraints\\&#10;pi \* ||θ|| &amp;gt;= 1 if y = 1\\ pi \* ||θ|| &amp;lt;= -1 if y = 0&#10;&#10;picture&#10;&#10;θ is always at 90 degrees to the decision boundary&#10;&#10;picture&#10;&#10;We know we need p1 \* ||θ|| to be bigger than or equal to 1 for positive&#10;examples. **If p is small, means that ||θ|| must be pretty large**, and&#10;it is the same as negative example&#10;&#10;picture&#10;&#10;Now if you look at the projection of the examples to θ we find that p1&#10;becomes large and ||θ|| can become small">
+    </outline>
+  </outline>
+  <outline text="4. Kernels: Adapting SVM to non-linear classifiers" _note="Come up with a complex set of polynomial features to fit the data. Have&#10;hθ(x) which Returns 1 if the combined weighted sum of vectors (weighted&#10;by the parameter vector) is less than or equal to 0&#10;非线性分类里面暂且降低要求，只要大于0即返回1.&#10;(从以前学过的多项式回归演变来)">
+  </outline>
+  <outline text="4.1 Gaussian Kernel" _note="hθ(x) = θ0+ θ1f1+ θ2f2 + θ3f3 f是high polynomial&#10;terms，除此之外还有没有替代多项式的表达方式呢？Is there a better choice&#10;of feature f than the high order polynomials?&#10;&#10;Pick three points in that space and they are called landmarks&#10;&#10;\\ This **similarity functio**n is called a kernel\\ This function is a&#10;**Gaussian Kernel**&#10;&#10;-   || x - l1 || is the euclidean distance between the point x and the&#10;    landmark l1 squared&#10;&#10;-   σ is the standard deviation. σ2 is commonly called the variance&#10;&#10;-   Say x is far from a landmark. then the f is close to zero">
+  </outline>
+  <outline text="4.2 What does σ do?" _note="Below σ^2 = 0.5 picture&#10;&#10;below σ^2 = 3 picture">
+  </outline>
+  <outline text="4.3 what kinds of hypotheses can we learn?" _note="With training examples x we predict &quot;1&quot; when θ0+ θ1f1+ θ2f2 + θ3f3 &amp;gt;=&#10;0\\ For our example, lets say we've already run an algorithm and got the&#10;θ0 = -0.5 θ1 = 1 θ2 = 1 θ3 = 0&#10;&#10;picture first point, f1 will be close to 1, but f2 and f3 will be close&#10;to 0, θ0+ θ1f1+ θ2f2 + θ3f3 &amp;gt;= 0\\ -0.5 + 1 + 0 + 0 = 0.5 --&amp;gt;&#10;predict 1&#10;&#10;another point far away from all three, This equates to -0.5. So we&#10;predict 0">
+  </outline>
+  <outline text="4.4 Implementation of kernels">
+    <outline text="4.4.1 Choosing the landmarks" _note="One landmark per location per training example\\ Means our features&#10;measure how close to a training set example something is&#10;&#10;If we had a training example - features we compute would be using (xi,&#10;yi)\\ So we just cycle through each landmark, calculating how close to&#10;that landmark actually xi is\\ f1i, = k(x**i**, l1)\\ f2i, = k(x**i**,&#10;l2)\\ ...\\ fmi, = k(x**i**, lm)">
+    </outline>
+    <outline text="4.4.2 SVM hypothesis prediction with kernels" _note="Predict y = 1 if (θ^T f) &amp;gt;= 0\\ θ = \[m+1 x 1\] f = \[m +1 x 1\]">
+    </outline>
+    <outline text="4.4.3 SVM training with kernels" _note="picture&#10;&#10;By solving this minimization problem you get the parameters θ for your&#10;SVM&#10;&#10;In this setup, m = n, Because number of features is the number of&#10;training data examples we have, and also the number of parameter θ">
+    </outline>
+    <outline text="4.4.4 SVM parameters (C)" _note="C plays a role similar to 1/LAMBDA (where LAMBDA is the regularization&#10;parameter)&#10;&#10;-   Large C gives a hypothesis of low bias high variance --&amp;gt;&#10;    overfitting&#10;&#10;-   Small C gives a hypothesis of high bias low variance --&amp;gt;&#10;    underfitting">
+    </outline>
+    <outline text="4.4.5 SVM parameters (σ2)" _note="Parameter for calculating f values&#10;&#10;-   Large σ2 - f features vary more smoothly - higher bias, lower&#10;    variance&#10;&#10;-   Small σ2 - f features vary abruptly - low bias, high variance">
+    </outline>
+  </outline>
+  <outline text="5. SVM - implementation and use">
+    <outline text="5.1 Choosing a kernel" _note="-   When would you chose a Gaussian? If n is small and/or m is large&#10;&#10;-   When would you chose a linear kernel? If n is large and m is small&#10;    then Lots of features, few examples&#10;&#10;Other choice of kernel">
+    </outline>
+    <outline text="5.2 Logistic regression vs. SVM" _note="-   If n (features) is large vs. m (training set): logistic regression&#10;    or SVM with a linear kernel&#10;&#10;-   n is small and m is intermediate: Gaussian kernel is good&#10;&#10;-   n is small and m is large: you should manually create or add more&#10;    features, then use logistic regression of SVM with a linear kernel&#10;&#10;**Logistic regression and SVM with a linear kernel are pretty similar**.&#10;Do similar things. Get similar performance. SVM has a convex&#10;optimization problem - so you get a global minimum&#10;&#10;**For all these regimes a well designed NN should work**">
+    </outline>
+  </outline>
+</outline>
+<outline text="Lecture 13 Cluster">
+  <outline text="1. Unsupervised learning - introduction" _note="-   Supervised learning\\ Given a set of labels, fit a hypothesis to it&#10;&#10;-   Unsupervised learning\\ Try and determining structure in the data.&#10;    Clustering algorithm groups data together based on data features">
+  </outline>
+  <outline text="2. K-means algorithm">
+    <outline text="2.1 Algorithm overview" _note="Take unlabeled data and group into two clusters&#10;&#10;1.  Randomly allocate two points as the cluster&#10;    centroids随机定几个中心点&#10;&#10;2.  Cluster assignment step. Go through each example and depending on if&#10;    it's closer to the red or blue centroid assign each point to one of&#10;    the two&#10;    clusters看example离哪个中心点近，就标记为那个中心点所属颜色\\&#10;    picture&#10;&#10;3.  Move centroid step. Take each centroid and move to the average of&#10;    the correspondingly assigned data-points&#10;    移动中心点到对应颜色的examples平均数位置\\ picture&#10;&#10;4.  Repeat 2) and 3) until convergence&#10;&#10;**Formal definition**:&#10;&#10;1.  **Input**:&#10;&#10;    -   K (number of clusters in the data)&#10;&#10;    -   Training set {x1, x2, x3 ..., xn)&#10;&#10;2.  Algorithm:&#10;&#10;    -   Randomly initialize K cluster centroids as {μ1, μ2, μ3 ... μK}&#10;&#10;    -   picture">
+    </outline>
+    <outline text="2.2 K-means for non-separated clusters" _note="K-means is applied to datasets where there aren't well defined clusters&#10;混沌状态&#10;&#10;picture&#10;&#10;picture&#10;&#10;So creates three clusters, even though they aren't really there">
+    </outline>
+  </outline>
+  <outline text="3. K means optimization objective" _note="K-means has an optimization objective like the supervised learning&#10;functions we've seen&#10;&#10;-   this is useful because it helps for debugging&#10;&#10;-   Helps find better clusters&#10;&#10;notation:&#10;&#10;-   c^i is the index of clusters {1,2, ..., K} to which x^i is currently&#10;    assigned&#10;&#10;-   μ\_k, is the cluster associated with centroid k&#10;&#10;-   , is the cluster centroid of the cluster to which example xi has&#10;    been assigned to&#10;&#10;our optimization value: picture picture&#10;&#10;Means that when the example is very close to the cluster, this value is&#10;small&#10;&#10;This is sometimes called the distortion (or distortion cost function)&#10;&#10;Summary:&#10;&#10;1.  cluster assigned step is minimizing J(...) with respect to c1, c2&#10;    ... ci 保持μ不变调整c使J下降&#10;&#10;2.  move centroid step 保持c不变调整μ使J下降">
+  </outline>
+  <outline text="4. Random initialization" _note="Have number of centroids set to less than number of examples (K &amp;lt; m)&#10;(if K &amp;gt; m we have a problem)0\\ Randomly pick K training examples and&#10;Set μ1 up to μK to these example's values&#10;&#10;Risk of **local optimum**\\ If this is a concern, we can do multiple&#10;random initializations See if we get the same result - many same results&#10;are likely to indicate a global optimum&#10;&#10;picture&#10;&#10;picture&#10;&#10;1.  Randomly initialize K-means&#10;&#10;2.  For each 100 random initialization run K-means&#10;&#10;3.  Then compute the distortion on the set of cluster assignments and&#10;    centroids at convergent&#10;&#10;4.  End with 100 ways of cluster the data Pick the clustering which&#10;    **gave the lowest distortion** 不同初始化下取J的最小值&#10;&#10;If K is larger than 10, then multiple random initializations are less&#10;likely to be necessary">
+  </outline>
+  <outline text="5. Choose the number of clusters" _note="Normally use visualizations to do it manually">
+    <outline text="5.1 Elbow method" _note="As K increases J(...) minimum value should decrease\\ Look for the&#10;&quot;elbow&quot; on the graph&#10;&#10;picture&#10;&#10;Risks\\ Normally you don't get a a nice line -&amp;gt; no clear elbow on&#10;curve">
+    </outline>
+    <outline text="5.2 For a later/downstream purpose" _note="Could consider the cost of making extra sizes vs. how well distributed&#10;the products are&#10;&#10;applied problem may help guide the number of clusters">
+    </outline>
+  </outline>
+</outline>
+<outline text="Lecture 14 Dimensionality Reduc1on">
+  <outline text="1. Motivation">
+    <outline text="1.1 Motivation 1: Data compression" _note="-   Speeds up algorithms&#10;&#10;-   Reduces space used by data for them&#10;&#10;you've collected many features - maybe more than you need. Can you&#10;&quot;simply&quot; your data set in a rational and useful way?\\ ex. Helicopter&#10;flying - do a survey of pilots (x1 = skill, x2 = pilot enjoyment) \\&#10;These features may be highly correlated&#10;&#10;picture&#10;&#10;picture&#10;&#10;表示二维">
+    </outline>
+    <outline text="1.2 Motivation 2: Visualization" _note="improve how we display information&#10;&#10;picture&#10;&#10;picture&#10;&#10;Reduce 50D -&amp;gt; 2D&#10;&#10;Typically you don't generally ascribe meaning to the new features. It's&#10;up to you to asses what of the features can be grouped to form summary&#10;features">
+    </outline>
+  </outline>
+  <outline text="2. Principle Component Analysis (PCA): Problem Formulation">
+    <outline text="2.1 VS linear regression" _note="PCA:&#10;&#10;-   orthogonal distance&#10;&#10;-   features are treated equally&#10;&#10;linear regression:&#10;&#10;-   VERTICAL distance between point&#10;&#10;-   trying to predict &quot;y&quot;">
+    </outline>
+    <outline text="2.2 algorithm" _note="Find k vectors (u(1), u(2), ... u(k)) onto which to project the data to&#10;minimize the **projection error**&#10;&#10;picture&#10;&#10;As an aside, you should normally do **mean normalization** and **feature&#10;scaling** on your data before PCA\\ (xj - μj) / sj&#10;&#10;picture&#10;&#10;Need to compute two things:&#10;&#10;-   Compute the **u vectors: The new planes**&#10;&#10;-   Need to compute the z vectors: **z vectors are the new, lower&#10;    dimensionality feature vectors**">
+      <outline text="algorithm description" _note="1.  Preprocessing&#10;&#10;2.  Calculate sigma (covariance matrix)&#10;&#10;    -   picture&#10;&#10;    -   Σ (greek upper case sigma) - NOT summation symbol&#10;&#10;3.  Calculate eigenvectors with svd&#10;&#10;    -   \[U,S,V\] = svd(sigma)&#10;&#10;    -   svd = singular value decomposition&#10;&#10;    -   Turns out the columns of **U are the u vectors** we want!&#10;&#10;4.  Take k vectors from U (Ureduce= U(:,1:k);)&#10;&#10;    -   picture&#10;&#10;5.  Calculate z (z =Ureduce' \* x;)&#10;&#10;    -   &#10;&#10;    -   Generates a matrix which is k \* 1">
+      </outline>
+    </outline>
+  </outline>
+  <outline text="3. Reconstruction from Compressed Representation" _note="We lose some of the information (i.e. everything is now perfectly on&#10;that line) but it is now projected into 2D space&#10;&#10;pciture">
+  </outline>
+  <outline text="4. Choosing the number of Principle Components" _note="picture&#10;&#10;Ratio between averaged squared projection error with total variation in&#10;data\\ Want ratio to be small - means we retain 99% of the variance&#10;保留了99%的方差&#10;&#10;The numerator is small when xi = xapproxi\\ i.e. we **lose very little&#10;information** in the dimensionality reduction, so when we decompress we&#10;regenerate the same data\\ So we chose k in terms of this ratio">
+  </outline>
+  <outline text="5. Advice for Applying PCA" _note="1.  Apply PCA to x vectors. This gives you a new training set Each&#10;    vector can be re-associated with the labels z.&#10;&#10;2.  Take the reduced dimensionality data set and feed to a learning&#10;    algorithm\\ Use y as labels and z as feature vector&#10;&#10;3.  we use those learned parameters for our Cross validation data, Test&#10;    set (also reduced dimension)&#10;&#10;Before implementing PCA, first try running whatever you want to do with&#10;the original/raw data. Only if that doesn't do what you want, then&#10;implement PCA.">
+  </outline>
+</outline>
+<outline text="Lecture 15 Anomaly Detection">
+  <outline text="1. problem motivation" _note="access this model using p(x). What is the probability that example x is&#10;normal?&#10;&#10;if p(xtest) &amp;lt; ε --&amp;gt; flag this as an anomaly\\ if p(xtest) &amp;gt;= ε&#10;--&amp;gt; this is OK\\ **ε is some threshold probability value which we&#10;define, depending on how sure we need/want to be**">
+  </outline>
+  <outline text="2. The Gaussian(Normal) distribution" _note="**也就是正态分布**&#10;&#10;P(x : μ , σ^2) (probability of x, parameterized by the mean and squared&#10;variance) picture&#10;&#10;picture&#10;&#10;area always the same">
+    <outline text="algorithm" _note="The problem of estimation this distribution is sometimes call the&#10;problem of **density estimation**\\&#10;&#10;Unlabeled training set of m examples, Model P(x) from the data set\\&#10;picture">
+    </outline>
+  </outline>
+  <outline text="3. Developing and evaluating and anomaly detection system" _note="**an example** You have some labeled data Split into \\&#10;&#10;-   Training set: 6000 good engines (y = 0)&#10;&#10;-   CV set: 2000 good engines, 10 anomalous&#10;&#10;-   Test set: 2000 good engines, 10 anomalous&#10;&#10;-   Ratio is 3:1:1&#10;&#10;Algorithm evaluation&#10;&#10;1.  Take trainings set { x1, x2, ..., xm } **Fit model p(x)**&#10;&#10;2.  On cross validation and test set, test the example x&#10;&#10;    -   y = 1 if p(x) &amp;lt; epsilon (anomalous)&#10;&#10;    -   y = 0 if p(x) &amp;gt;= epsilon (normal)&#10;&#10;3.  Think of algorithm a trying to predict if something is anomalous.&#10;    But you have a label so can check!&#10;&#10;4.  Compute F1-score. Then **pick the value of epsilon which maximizes&#10;    the score on your CV set**&#10;&#10;5.  Do final algorithm evaluation on the test set">
+  </outline>
+  <outline text="4. Anomaly detection vs. supervised learning" _note="Anomaly detection&#10;&#10;-   Very small number of positive examples 极少数是不正常的y=1&#10;&#10;-   Have a very large number of negative examples 大部分是正常的y=0&#10;&#10;-   Many &quot;types&quot; of anomalies, but knows what they don't look like&#10;&#10;-   ex. Fraud detection; Fraud detection;&#10;&#10;Supervised learning&#10;&#10;-   Reasonably large number of positive and negative examples&#10;&#10;-   Have enough positive examples to give your algorithm&#10;&#10;-   ex. Weather prediction; Email/SPAM classification">
+  </outline>
+  <outline text="5. Choosing features to use">
+    <outline text="5.1 Non-Gaussian features." _note="Plot a histogram of data to check\\ Often still works if data is&#10;non-Gaussian&#10;&#10;i.e. if you have some feature x1, replace it with&#10;&#10;-   log(x1)&#10;&#10;-   Or do log(x1+c)&#10;&#10;-   Or do x1/2&#10;&#10;-   Or do x1/3">
+    </outline>
+    <outline text="5.2 Error analysis" _note="Can looking at that example help **develop a new feature (x2)** which&#10;can help distinguish further anomalous&#10;&#10;ex. We suspect CPU load and network traffic grow linearly with one&#10;another\\ New feature - CPU load/network traffic">
+    </outline>
+  </outline>
+  <outline text="6. Multivariate Gaussian distribution" _note="because our Normal Distribution function makes probability prediction in&#10;concentric circles around the the means of both 高斯分布成一个同心圆&#10;&#10;picture&#10;&#10;我们要的是这样 picture">
+    <outline text="Algorithm" _note="picture&#10;&#10;μ - which is an n dimensional vector (where n is number of features) Σ -&#10;which is an \[n x n\] matrix - the covariance matrix&#10;&#10;picture">
+    </outline>
+    <outline text="Original model vs. Multivariate Gaussian" _note="Original Gaussian model&#10;&#10;-   need to make extra features&#10;&#10;-   cheaper computationally&#10;&#10;-   Scales much better to very large feature vectors. Scales much better&#10;    to very large feature vectors&#10;&#10;-   Scales much better to very large feature vectors&#10;&#10;Multivariate Gaussian model&#10;&#10;-   Needs for m &amp;gt; 10n or more, no redundant features --&amp;gt; or&#10;    non-invertible&#10;&#10;-   Less computationally efficient&#10;&#10;-   Can capture feature correlation">
+    </outline>
+  </outline>
+</outline>
+  </body>
+</opml>
